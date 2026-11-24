@@ -13,6 +13,16 @@ public partial class MainPage : ContentPage
         BindingContext = new CatalogoViewModel();
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is CatalogoViewModel vm)
+        {
+            await vm.CargarProductosAsync();
+        }
+    }
+
     private bool abriendoDetalle;
 
     private async void AlSeleccionarProducto(object? sender,
